@@ -1,13 +1,19 @@
 {
 	"compilerOptions": {
-		"target": "ES2022",
+		"target": "esnext",
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"strict": true,
 		"noUncheckedIndexedAccess": true,
-		"lib": ["ES2022", "DOM", "DOM.Iterable"],
+		"lib": [
+			"ESNext",
+			"DOM",
+			"DOM.Iterable"
+		],
 		"outDir": "dist",
 		"rootDir": "src"
 	},
-	"include": ["src"]
+	"include": [
+		"src"
+	]
 }
