@@ -13,12 +13,7 @@
 	--accent: #e7a832;
 	--accent2: #fec95c;
 	--gradient: linear-gradient(135deg, #e7a832, #fec95c);
-	--glow: 0 0 30px rgba(231, 168, 50, 0.15);
-	--accent-a8: rgba(231, 168, 50, 0.08);
-	--accent-a12: rgba(231, 168, 50, 0.12);
-	--accent-a20: rgba(231, 168, 50, 0.2);
-	--accent-a30: rgba(231, 168, 50, 0.3);
-	--nav-bg: rgba(10, 10, 8, 0.92);
+	--glow: 0 0 30px color-mix(in srgb, var(--accent) 15%, transparent);
 }
 html {
 	scroll-behavior: smooth;
@@ -57,7 +52,7 @@ nav {
 	transition: background 0.4s, box-shadow 0.4s;
 }
 nav.scrolled {
-	background: var(--nav-bg);
+	background: color-mix(in srgb, var(--bg) 92%, transparent);
 	backdrop-filter: blur(12px);
 	box-shadow: 0 1px 0 var(--border);
 }
@@ -109,7 +104,7 @@ section {
 	height: 600px;
 	background: radial-gradient(
 		circle,
-		var(--accent-a8) 0%,
+		color-mix(in srgb, var(--accent) 8%, transparent) 0%,
 		transparent 70%
 	);
 	pointer-events: none;
@@ -172,7 +167,7 @@ section {
 }
 .btn-primary:hover {
 	transform: translateY(-2px);
-	box-shadow: 0 8px 30px var(--accent-a30);
+	box-shadow: 0 8px 30px color-mix(in srgb, var(--accent) 30%, transparent);
 	color: #fff;
 }
 .btn-outline {
@@ -232,7 +227,11 @@ section {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(135deg, var(--accent-a12), transparent);
+	background: linear-gradient(
+		135deg,
+		color-mix(in srgb, var(--accent) 12%, transparent),
+		transparent
+	);
 	pointer-events: none;
 }
 .about-text p {
@@ -370,9 +369,9 @@ section {
 	padding: 4px 10px;
 	border-radius: 6px;
 	font-size: 0.75rem;
-	background: var(--accent-a12);
+	background: color-mix(in srgb, var(--accent) 12%, transparent);
 	color: var(--accent2);
-	border: 1px solid var(--accent-a20);
+	border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 /* Source CTA */
@@ -481,12 +480,6 @@ footer span {
 		--accent: #b8860b;
 		--accent2: #996600;
 		--gradient: linear-gradient(135deg, #b8860b, #d4a017);
-		--glow: 0 0 30px rgba(184, 134, 11, 0.12);
-		--accent-a8: rgba(184, 134, 11, 0.06);
-		--accent-a12: rgba(184, 134, 11, 0.08);
-		--accent-a20: rgba(184, 134, 11, 0.15);
-		--accent-a30: rgba(184, 134, 11, 0.2);
-		--nav-bg: rgba(250, 250, 250, 0.92);
 	}
 	a:hover {
 		color: var(--text);
