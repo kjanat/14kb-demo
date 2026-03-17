@@ -470,13 +470,11 @@ footer span {
 	.hero::before {
 		width: 100%;
 	}
-	.contact-links {
-		flex-wrap: wrap;
-	}
 	nav ul {
-		gap: 16px;
+		gap: 10px;
 	}
 	nav a {
-		font-size: 0.78rem;
+		font-size: 0.72rem;
+		letter-spacing: 0;
 	}
 }
