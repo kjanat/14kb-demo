@@ -493,6 +493,12 @@ footer span {
 	.hero h1 {
 		font-size: 2.2rem;
 	}
+	.hero::before {
+		width: 100%;
+	}
+	.contact-links {
+		flex-wrap: wrap;
+	}
 	nav ul {
 		gap: 16px;
 	}
