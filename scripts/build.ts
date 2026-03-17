@@ -44,37 +44,37 @@ for (const output of result.outputs) {
 // Read HTML template
 const html = await Bun.file(TEMPLATE).text();
 
-// Minify HTML via HTMLRewriter: strips inter-tag whitespace while
-// preserving text content intact (no word-merging bugs).
-async function minifyHtml(src: string): Promise<string> {
-	let inRaw = 0; // depth inside <style>/<script>
+// Minify HTML: collapse whitespace outside <style>/<script> blocks,
+// preserving word boundaries in text content.
+function minifyHtml(src: string): string {
+	// 1. Extract <style>/<script> blocks so regex won't touch them
+	const preserved: string[] = [];
+	const placeholder = (i: number) => `\x00${i}\x00`;
+	const withPlaceholders = src.replace(
+		/<(style|script)\b[^>]*>[\s\S]*?<\/\1>/gi,
+		(match) => {
+			preserved.push(match);
+			return placeholder(preserved.length - 1);
+		},
+	);
 
-	const rewriter = new HTMLRewriter()
-		.on('style, script', {
-			element(el) {
-				inRaw++;
-				el.onEndTag(() => { inRaw--; });
-			},
-		})
-		.on('*', {
-			text(text) {
-				if (inRaw > 0) return; // preserve <style>/<script> content
-				if (/^\s+$/.test(text.text)) {
-					text.remove(); // whitespace-only text node → remove
-				} else {
-					text.replace(text.text.replace(/\s{2,}/g, ' '), { html: false });
-				}
-			},
-		});
+	// 2. Collapse whitespace in the HTML shell
+	const minified = withPlaceholders
+		.replace(/\n\s*/g, ' ') // newline+indent → single space (preserves word gaps)
+		.replace(/>\s+</g, '><') // strip whitespace between tags
+		.replace(/\s{2,}/g, ' ') // collapse remaining runs
+		.trim();
 
-	return await rewriter.transform(new Response(src)).text();
+	// 3. Restore <style>/<script> blocks verbatim
+	return minified.replace(/\x00(\d+)\x00/g, (_, i) => preserved[Number(i)]!);
 }
 
 // Inject CSS + JS, then minify
-const injected = html
-	.replace('<!-- CSS_INJECT -->', `<style>${css}</style>`)
-	.replace('<!-- JS_INJECT -->', `<script>${js}</script>`);
-const final = await minifyHtml(injected);
+const final = minifyHtml(
+	html
+		.replace('<!-- CSS_INJECT -->', `<style>${css}</style>`)
+		.replace('<!-- JS_INJECT -->', `<script>${js}</script>`),
+);
 
 // Write output
 await Bun.write(`${DIST}/index.html`, final);
