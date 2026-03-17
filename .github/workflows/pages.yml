@@ -1,8 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [master]
+  push: { branches: [master] }
   workflow_dispatch:
 
 permissions:
@@ -23,9 +22,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
-      - run: bun run build
+      - run: bun --bun bd
       - uses: actions/upload-pages-artifact@v4
-        with:
-          path: dist
+        with: { path: dist }
       - id: deploy
         uses: actions/deploy-pages@v4

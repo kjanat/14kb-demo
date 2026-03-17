@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"build": "bun run scripts/build.ts",
+		"bd": "bun run scripts/build.ts",
 		"dev": "bun run scripts/build.ts --watch",
 		"fmt": "bunx dprint fmt -c=https://raw.githubusercontent.com/kjanat/kjanat/refs/heads/master/configs/dprint.remote.json",
 		"typecheck": "tsgo --noEmit"
