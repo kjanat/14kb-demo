@@ -1,0 +1,9 @@
+{
+	"name": "14kb-demo",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"build": "bun run scripts/build.ts",
+		"dev": "bun run scripts/build.ts --watch"
+	}
+}
