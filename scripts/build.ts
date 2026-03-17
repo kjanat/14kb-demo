@@ -47,8 +47,8 @@ const html = await Bun.file(TEMPLATE).text();
 // Minify HTML: collapse whitespace between tags, trim lines
 function minifyHtml(src: string): string {
 	return src
-		.replace(/\n\s*/g, '') // collapse newlines + leading whitespace
-		.replace(/>\s+</g, '><') // remove whitespace between tags
+		.replace(/\n\s*/g, ' ') // newline+indent → single space (preserves word gaps)
+		.replace(/>\s+</g, '><') // strip whitespace between tags
 		.replace(/\s{2,}/g, ' ') // collapse remaining runs
 		.trim();
 }
