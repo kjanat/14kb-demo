@@ -1,28 +1,16 @@
 /**
- * Build script: bundles src/ into a single self-contained index.html
+ * Build script: uses Bun's native standalone HTML bundling to produce
+ * a single self-contained index.html with inlined CSS + JS.
  *
- * 1. Bun-bundles main.ts (tree-shakes, minifies JS)
- * 2. Extracts CSS imported by main.ts via Bun's CSS loader
- * 3. Injects <style> and <script> into src/index.html template
- * 4. Writes dist/index.html
+ * Enforces the TCP initial congestion window size budget (14,600 B).
  */
 
-import { existsSync, mkdirSync } from 'node:fs';
-
-const SRC = 'src';
-const DIST = 'dist';
-const TEMPLATE = `${SRC}/index.html`;
-const ENTRY = `${SRC}/main.ts`;
-
-if (!existsSync(DIST)) mkdirSync(DIST, { recursive: true });
-
-// Bundle JS (Bun extracts imported CSS as a separate output)
 const result = await Bun.build({
-	entrypoints: [ENTRY],
-	minify: true,
+	entrypoints: ['src/index.html'],
+	compile: true,
 	target: 'browser',
-	outdir: DIST,
-	naming: '[name].[ext]',
+	outdir: 'dist',
+	minify: true,
 });
 
 if (!result.success) {
@@ -31,67 +19,37 @@ if (!result.success) {
 	process.exit(1);
 }
 
-// Collect outputs
-let js = '';
-let css = '';
-
-for (const output of result.outputs) {
-	const text = await output.text();
-	if (output.path.endsWith('.js')) js = text;
-	if (output.path.endsWith('.css')) css = text;
+const output = result.outputs[0];
+if (!output) {
+	console.error('No output produced');
+	process.exit(1);
 }
 
-// Read HTML template
-const html = await Bun.file(TEMPLATE).text();
-
-// Minify HTML: collapse whitespace outside <style>/<script> blocks,
-// preserving word boundaries in text content.
+// Bun minifies CSS/JS but not HTML structure — collapse whitespace
+// outside <style>/<script> blocks while preserving text word gaps.
 function minifyHtml(src: string): string {
-	// 1. Extract <style>/<script> blocks so regex won't touch them
 	const preserved: string[] = [];
-	const placeholder = (i: number) => `\x00${i}\x00`;
 	const withPlaceholders = src.replace(
 		/<(style|script)\b[^>]*>[\s\S]*?<\/\1>/gi,
 		(match) => {
 			preserved.push(match);
-			return placeholder(preserved.length - 1);
+			return `\x00${preserved.length - 1}\x00`;
 		},
 	);
-
-	// 2. Collapse whitespace in the HTML shell
 	const minified = withPlaceholders
-		.replace(/\n\s*/g, ' ') // newline+indent → single space (preserves word gaps)
-		.replace(/>\s+</g, '><') // strip whitespace between tags
-		.replace(/\s{2,}/g, ' ') // collapse remaining runs
+		.replace(/\n\s*/g, ' ')
+		.replace(/>\s+</g, '><')
+		.replace(/\s{2,}/g, ' ')
 		.trim();
-
-	// 3. Restore <style>/<script> blocks verbatim
 	return minified.replace(/\x00(\d+)\x00/g, (_, i) => preserved[Number(i)]!);
 }
 
-// Inject CSS + JS, then minify
-const final = minifyHtml(
-	html
-		.replace('<!-- CSS_INJECT -->', `<style>${css}</style>`)
-		.replace('<!-- JS_INJECT -->', `<script>${js}</script>`),
-);
+const html = minifyHtml(await output.text());
+await Bun.write('dist/index.html', html);
 
-// Write output
-await Bun.write(`${DIST}/index.html`, final);
-
-// Clean intermediate files
-const { unlinkSync } = await import('node:fs');
-for (const output of result.outputs) {
-	try {
-		unlinkSync(output.path);
-	} catch {
-		// ignore
-	}
-}
-
-// Stats
-const size = new Blob([final]).size;
-const gzip = Bun.gzipSync(new TextEncoder().encode(final)).length;
+const size = new Blob([html]).size;
+const content = new TextEncoder().encode(html);
+const gzip = Bun.gzipSync(content).length;
 const initcwnd = 14_600;
 
 console.log(`dist/index.html`);

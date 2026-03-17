@@ -1,5 +1,3 @@
-import './style.css';
-
 // Nav scroll effect
 const nav = document.getElementById('nav');
 if (nav) {
