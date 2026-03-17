@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
-      - run: bun run build && cp styles.html dist
+      - run: bun run build
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

@@ -6,7 +6,7 @@
  */
 
 const result = await Bun.build({
-	entrypoints: ['src/index.html'],
+	entrypoints: ['src/index.html', 'src/styles.html'],
 	compile: true,
 	target: 'browser',
 	outdir: 'dist',
