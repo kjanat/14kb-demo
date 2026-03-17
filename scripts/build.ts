@@ -57,9 +57,7 @@ function breakdown(src: string) {
 
 // Format bytes as human-readable size string.
 function fmtSize(bytes: number): string {
-	return bytes >= 1000
-		? `${(bytes / 1000).toFixed(1)} KB`
-		: `${bytes} B`;
+	return bytes >= 1000 ? `${(bytes / 1000).toFixed(1)} KB` : `${bytes} B`;
 }
 
 // Resolve all {{…}} placeholders via fixed-point iteration — sizes
@@ -100,13 +98,19 @@ const gzip = Bun.gzipSync(new TextEncoder().encode(html)).length;
 const pct = (n: number) => ((n / b.total) * 100).toFixed(1);
 
 console.log(`dist/index.html`);
-console.log(`  raw:  ${b.total.toLocaleString()} B (${((b.total / initcwnd) * 100).toFixed(0)}% of initcwnd)`);
-console.log(`  gzip: ${gzip.toLocaleString()} B (${((gzip / initcwnd) * 100).toFixed(0)}% of initcwnd)`);
+console.log(
+	`  raw:  ${b.total.toLocaleString()} B (${((b.total / initcwnd) * 100).toFixed(0)}% of initcwnd)`,
+);
+console.log(
+	`  gzip: ${gzip.toLocaleString()} B (${((gzip / initcwnd) * 100).toFixed(0)}% of initcwnd)`,
+);
 console.log(`  css:  ${b.css.toLocaleString()} B (${pct(b.css)}%)`);
 console.log(`  html: ${b.html.toLocaleString()} B (${pct(b.html)}%)`);
 console.log(`  js:   ${b.js.toLocaleString()} B (${pct(b.js)}%)`);
 if (b.total >= initcwnd) {
-	console.error(`  EXCEEDS initcwnd by ${b.total - initcwnd} B — needs compression`);
+	console.error(
+		`  EXCEEDS initcwnd by ${b.total - initcwnd} B — needs compression`,
+	);
 	process.exit(b.total - initcwnd);
 } else {
 	console.log(`  fits in one initcwnd (${initcwnd - b.total} B to spare)`);

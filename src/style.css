@@ -65,8 +65,8 @@ nav .logo {
 	font-weight: 700;
 	font-size: 1.2rem;
 	background: var(--gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
 }
 nav ul {
 	list-style: none;
@@ -131,8 +131,8 @@ section {
 }
 .hero h1 span {
 	background: var(--gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
 }
 .hero p {
 	font-size: 1.15rem;
@@ -168,7 +168,6 @@ section {
 .btn-primary:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 8px 30px color-mix(in srgb, var(--accent) 30%, transparent);
-	color: #fff;
 }
 .btn-outline {
 	background: transparent;
@@ -255,8 +254,8 @@ section {
 	font-size: 1.6rem;
 	font-weight: 700;
 	background: var(--gradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
 }
 .stat .label {
 	font-size: 0.78rem;
@@ -477,9 +476,9 @@ footer span {
 		--border: #d8d8e0;
 		--text: #1a1a2e;
 		--muted: #6e6e82;
-		--accent: #b8860b;
-		--accent2: #996600;
-		--gradient: linear-gradient(135deg, #b8860b, #d4a017);
+		--accent: #c8850a;
+		--accent2: #a06800;
+		--gradient: linear-gradient(135deg, #d49a12, #e8b030);
 	}
 	a:hover {
 		color: var(--text);
@@ -489,22 +488,20 @@ footer span {
 		color: #fff;
 	}
 	.project-card:nth-child(1) .project-thumb {
-		background: linear-gradient(135deg, #f5edd4, #ece0b8);
+		background: linear-gradient(135deg, #fdf6e8, #f8ecd0);
 	}
 	.project-card:nth-child(2) .project-thumb {
-		background: linear-gradient(135deg, #eee8d0, #e4dab8);
+		background: linear-gradient(135deg, #faf2e2, #f4e6c8);
 	}
 	.project-card:nth-child(3) .project-thumb {
-		background: linear-gradient(135deg, #f0e8cc, #e8dcb4);
+		background: linear-gradient(135deg, #fcf4e4, #f6eacc);
 	}
 }
 
 /* Responsive */
 @media (max-width: 768px) {
 	.about-grid,
-	.skills-grid {
-		grid-template-columns: 1fr;
-	}
+	.skills-grid,
 	.projects-grid {
 		grid-template-columns: 1fr;
 	}

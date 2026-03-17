@@ -10,10 +10,12 @@
 				padding: 0;
 				box-sizing: border-box;
 			}
+
 			html {
 				scroll-snap-type: y mandatory;
 				scroll-behavior: smooth;
 			}
+
 			body {
 				font-family:
 					-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -35,6 +37,7 @@
 				position: relative;
 				overflow: hidden;
 			}
+
 			.scheme-inner {
 				width: 100%;
 				max-width: 720px;
@@ -48,11 +51,13 @@
 				gap: 0.75rem;
 				margin-bottom: 1.5rem;
 			}
+
 			.scheme-name {
 				font-size: 1.6rem;
 				font-weight: 700;
 				letter-spacing: -0.02em;
 			}
+
 			.scheme-tag {
 				font-size: 0.7rem;
 				padding: 0.2em 0.7em;
@@ -63,6 +68,7 @@
 				text-transform: uppercase;
 				letter-spacing: 0.05em;
 			}
+
 			.scheme-counter {
 				font-size: 0.75rem;
 				color: var(--muted);
@@ -77,18 +83,21 @@
 				margin-bottom: 1.75rem;
 				flex-wrap: wrap;
 			}
+
 			.swatch {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				gap: 0.3rem;
 			}
+
 			.swatch-dot {
 				width: 36px;
 				height: 36px;
 				border-radius: 8px;
 				border: 1px solid var(--border);
 			}
+
 			.swatch-label {
 				font-size: 0.6rem;
 				color: var(--muted);
@@ -104,12 +113,14 @@
 				font-weight: 600;
 				margin-bottom: 0.4rem;
 			}
+
 			.section-heading {
 				font-size: 1.3rem;
 				font-weight: 700;
 				margin-bottom: 0.5rem;
 				letter-spacing: -0.02em;
 			}
+
 			.section-text {
 				color: var(--muted);
 				font-size: 0.85rem;
@@ -124,6 +135,7 @@
 				margin-bottom: 1.5rem;
 				flex-wrap: wrap;
 			}
+
 			.btn {
 				display: inline-block;
 				padding: 0.55em 1.4em;
@@ -135,13 +147,16 @@
 				border: none;
 				transition: opacity 0.2s;
 			}
+
 			.btn:hover {
 				opacity: 0.85;
 			}
+
 			.btn-primary {
 				background: var(--gradient);
 				color: #fff;
 			}
+
 			.btn-outline {
 				background: transparent;
 				border: 1.5px solid var(--accent);
@@ -152,18 +167,21 @@
 			.bars {
 				margin-bottom: 1.5rem;
 			}
+
 			.bar-row {
 				display: flex;
 				align-items: center;
 				gap: 0.6rem;
 				margin-bottom: 0.5rem;
 			}
+
 			.bar-label {
 				font-size: 0.75rem;
 				font-weight: 600;
 				width: 72px;
 				text-align: right;
 			}
+
 			.bar-track {
 				flex: 1;
 				height: 7px;
@@ -171,11 +189,13 @@
 				border-radius: 4px;
 				overflow: hidden;
 			}
+
 			.bar-fill {
 				height: 100%;
 				border-radius: 4px;
 				background: var(--gradient);
 			}
+
 			.bar-val {
 				font-size: 0.7rem;
 				color: var(--muted);
@@ -190,6 +210,7 @@
 				overflow: hidden;
 				max-width: 280px;
 			}
+
 			.card-thumb {
 				height: 80px;
 				display: flex;
@@ -197,23 +218,28 @@
 				justify-content: center;
 				font-size: 1.8rem;
 			}
+
 			.card-body {
 				padding: 0.8rem 1rem;
 			}
+
 			.card-body h3 {
 				font-size: 0.9rem;
 				margin-bottom: 0.3rem;
 			}
+
 			.card-body p {
 				font-size: 0.75rem;
 				color: var(--muted);
 				margin-bottom: 0.5rem;
 			}
+
 			.tags {
 				display: flex;
 				gap: 0.35rem;
 				flex-wrap: wrap;
 			}
+
 			.tag {
 				font-size: 0.65rem;
 				padding: 0.15em 0.5em;
@@ -234,6 +260,7 @@
 				gap: 0.6rem;
 				z-index: 10;
 			}
+
 			.dot-nav a {
 				display: block;
 				width: 10px;
@@ -243,10 +270,12 @@
 				border: 1px solid rgba(255, 255, 255, 0.15);
 				transition: background 0.3s, transform 0.3s;
 			}
+
 			.dot-nav a.active {
 				background: #fff;
 				transform: scale(1.3);
 			}
+
 			.dot-nav a:hover {
 				background: rgba(255, 255, 255, 0.5);
 			}
@@ -263,10 +292,13 @@
 				text-transform: uppercase;
 				animation: pulse 2s ease-in-out infinite;
 			}
+
 			@keyframes pulse {
-				0%, 100% {
+				0%,
+				100% {
 					opacity: 0.4;
 				}
+
 				50% {
 					opacity: 1;
 				}
@@ -276,6 +308,7 @@
 			.scheme--light .btn-primary {
 				color: #fff;
 			}
+
 			.scheme--light .scheme-tag {
 				color: #fff;
 			}
@@ -285,20 +318,25 @@
 				.scheme-inner {
 					padding: 1.25rem;
 				}
+
 				.scheme-name {
 					font-size: 1.2rem;
 				}
+
 				.section-heading {
 					font-size: 1.1rem;
 				}
+
 				.swatch-dot {
 					width: 28px;
 					height: 28px;
 				}
+
 				.dot-nav {
 					right: 0.6rem;
 					gap: 0.5rem;
 				}
+
 				.dot-nav a {
 					width: 8px;
 					height: 8px;
@@ -306,6 +344,7 @@
 			}
 		</style>
 	</head>
+
 	<body>
 		<!-- Dot navigation -->
 		<nav class="dot-nav" id="dots">
@@ -383,17 +422,20 @@
 				</div>
 				<div class="bars">
 					<div class="bar-row">
-						<span class="bar-label">CSS</span><div class="bar-track">
+						<span class="bar-label">CSS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 52%"></div>
 						</div><span class="bar-val">~52%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">HTML</span><div class="bar-track">
+						<span class="bar-label">HTML</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 40%"></div>
 						</div><span class="bar-val">~40%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">JS</span><div class="bar-track">
+						<span class="bar-label">JS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 5%"></div>
 						</div><span class="bar-val">~5%</span>
 					</div>
@@ -483,17 +525,20 @@
 				</div>
 				<div class="bars">
 					<div class="bar-row">
-						<span class="bar-label">CSS</span><div class="bar-track">
+						<span class="bar-label">CSS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 52%"></div>
 						</div><span class="bar-val">~52%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">HTML</span><div class="bar-track">
+						<span class="bar-label">HTML</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 40%"></div>
 						</div><span class="bar-val">~40%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">JS</span><div class="bar-track">
+						<span class="bar-label">JS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 5%"></div>
 						</div><span class="bar-val">~5%</span>
 					</div>
@@ -582,17 +627,20 @@
 				</div>
 				<div class="bars">
 					<div class="bar-row">
-						<span class="bar-label">CSS</span><div class="bar-track">
+						<span class="bar-label">CSS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 52%"></div>
 						</div><span class="bar-val">~52%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">HTML</span><div class="bar-track">
+						<span class="bar-label">HTML</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 40%"></div>
 						</div><span class="bar-val">~40%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">JS</span><div class="bar-track">
+						<span class="bar-label">JS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 5%"></div>
 						</div><span class="bar-val">~5%</span>
 					</div>
@@ -681,17 +729,20 @@
 				</div>
 				<div class="bars">
 					<div class="bar-row">
-						<span class="bar-label">CSS</span><div class="bar-track">
+						<span class="bar-label">CSS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 52%"></div>
 						</div><span class="bar-val">~52%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">HTML</span><div class="bar-track">
+						<span class="bar-label">HTML</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 40%"></div>
 						</div><span class="bar-val">~40%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">JS</span><div class="bar-track">
+						<span class="bar-label">JS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 5%"></div>
 						</div><span class="bar-val">~5%</span>
 					</div>
@@ -780,17 +831,20 @@
 				</div>
 				<div class="bars">
 					<div class="bar-row">
-						<span class="bar-label">CSS</span><div class="bar-track">
+						<span class="bar-label">CSS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 52%"></div>
 						</div><span class="bar-val">~52%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">HTML</span><div class="bar-track">
+						<span class="bar-label">HTML</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 40%"></div>
 						</div><span class="bar-val">~40%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">JS</span><div class="bar-track">
+						<span class="bar-label">JS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 5%"></div>
 						</div><span class="bar-val">~5%</span>
 					</div>
@@ -879,17 +933,20 @@
 				</div>
 				<div class="bars">
 					<div class="bar-row">
-						<span class="bar-label">CSS</span><div class="bar-track">
+						<span class="bar-label">CSS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 52%"></div>
 						</div><span class="bar-val">~52%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">HTML</span><div class="bar-track">
+						<span class="bar-label">HTML</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 40%"></div>
 						</div><span class="bar-val">~40%</span>
 					</div>
 					<div class="bar-row">
-						<span class="bar-label">JS</span><div class="bar-track">
+						<span class="bar-label">JS</span>
+						<div class="bar-track">
 							<div class="bar-fill" style="width: 5%"></div>
 						</div><span class="bar-val">~5%</span>
 					</div>
@@ -921,7 +978,7 @@
 					if (e.isIntersecting) {
 						const id = e.target.id;
 						for (const d of dots) {
-							d.classList.toggle('active', d.getAttribute('href') === '#' + id);
+							d.classList.toggle('active', d.getAttribute('href') === `#${id}`);
 						}
 					}
 				}
