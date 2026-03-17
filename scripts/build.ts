@@ -44,21 +44,37 @@ for (const output of result.outputs) {
 // Read HTML template
 const html = await Bun.file(TEMPLATE).text();
 
-// Minify HTML: collapse whitespace between tags, trim lines
-function minifyHtml(src: string): string {
-	return src
-		.replace(/\n\s*/g, ' ') // newline+indent → single space (preserves word gaps)
-		.replace(/>\s+</g, '><') // strip whitespace between tags
-		.replace(/\s{2,}/g, ' ') // collapse remaining runs
-		.trim();
+// Minify HTML via HTMLRewriter: strips inter-tag whitespace while
+// preserving text content intact (no word-merging bugs).
+async function minifyHtml(src: string): Promise<string> {
+	let inRaw = 0; // depth inside <style>/<script>
+
+	const rewriter = new HTMLRewriter()
+		.on('style, script', {
+			element(el) {
+				inRaw++;
+				el.onEndTag(() => { inRaw--; });
+			},
+		})
+		.on('*', {
+			text(text) {
+				if (inRaw > 0) return; // preserve <style>/<script> content
+				if (/^\s+$/.test(text.text)) {
+					text.remove(); // whitespace-only text node → remove
+				} else {
+					text.replace(text.text.replace(/\s{2,}/g, ' '), { html: false });
+				}
+			},
+		});
+
+	return await rewriter.transform(new Response(src)).text();
 }
 
 // Inject CSS + JS, then minify
-const final = minifyHtml(
-	html
-		.replace('<!-- CSS_INJECT -->', `<style>${css}</style>`)
-		.replace('<!-- JS_INJECT -->', `<script>${js}</script>`),
-);
+const injected = html
+	.replace('<!-- CSS_INJECT -->', `<style>${css}</style>`)
+	.replace('<!-- JS_INJECT -->', `<script>${js}</script>`);
+const final = await minifyHtml(injected);
 
 // Write output
 await Bun.write(`${DIST}/index.html`, final);
