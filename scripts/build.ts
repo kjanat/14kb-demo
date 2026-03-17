@@ -44,7 +44,28 @@ function minifyHtml(src: string): string {
 	return minified.replace(/\x00(\d+)\x00/g, (_, i) => preserved[Number(i)]!);
 }
 
-const html = minifyHtml(await output.text());
+// Resolve {{FILESIZE}} placeholder — iterate until the formatted size
+// string no longer changes the byte count (fixed-point convergence).
+let html = minifyHtml(await output.text());
+const PLACEHOLDER = '{{FILESIZE}}';
+const MAX_ITER = 5;
+
+if (html.includes(PLACEHOLDER)) {
+	for (let i = 0; i < MAX_ITER; i++) {
+		const size = new Blob([html]).size;
+		const formatted = size.toLocaleString();
+		const next = html.replace(PLACEHOLDER, formatted);
+		const nextSize = new Blob([next]).size;
+		const nextFormatted = nextSize.toLocaleString();
+		if (formatted === nextFormatted) {
+			html = next;
+			break;
+		}
+		// Size changed after injection — retry with new size
+		html = minifyHtml(await output.text()).replace(PLACEHOLDER, nextFormatted);
+	}
+}
+
 await Bun.write('dist/index.html', html);
 
 const size = new Blob([html]).size;
