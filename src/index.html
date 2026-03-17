@@ -3,18 +3,18 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Alex Chen — Developer</title>
+		<title>14K — One Packet, One Page</title>
 		<link rel="stylesheet" href="./style.css">
 	</head>
 	<body>
 		<nav id="nav">
 			<div class="container">
-				<div class="logo">AC</div>
+				<div class="logo">14K</div>
 				<ul>
-					<li><a href="#about">About</a></li>
-					<li><a href="#skills">Skills</a></li>
-					<li><a href="#projects">Projects</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="#challenge">Challenge</a></li>
+					<li><a href="#anatomy">Anatomy</a></li>
+					<li><a href="#techniques">Techniques</a></li>
+					<li><a href="#source">Source</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -22,59 +22,62 @@
 		<section class="hero" id="hero">
 			<div class="container">
 				<div class="hero-content">
-					<div class="tagline">Full-Stack Developer & Designer</div>
+					<div class="tagline">A Performance Experiment</div>
 					<h1>
-						Hi, I'm <span>Alex Chen</span>.<br>I build things for the web.<span
+						This page loaded in <span>one TCP packet</span>.<span
 							class="cursor"
 						></span>
 					</h1>
 					<p>
-						I craft performant, accessible web experiences with clean
-						architecture, focused on products that make a difference.
+						Everything you see — layout, animations, responsive design — fits in
+						14,600 bytes. One initial congestion window. Zero round trips.
 					</p>
 					<div class="btns">
-						<a href="#projects" class="btn btn-primary">View My Work</a>
-						<a href="#contact" class="btn btn-outline">Get In Touch</a>
+						<a href="#challenge" class="btn btn-primary">How It Works</a>
+						<a
+							href="https://github.com/kjanat/14kb-demo"
+							class="btn btn-outline"
+						>View Source</a>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section id="about">
+		<section id="challenge">
 			<div class="container">
 				<div class="section-header reveal">
-					<div class="section-label">About Me</div>
-					<h2>Turning ideas into reality</h2>
+					<div class="section-label">The Challenge</div>
+					<h2>14,600 bytes. No second chances.</h2>
 					<p>
-						A passionate developer with an eye for design and a love for clean,
-						efficient code.
+						The first thing a server sends is limited by TCP's initial
+						congestion window — 10 segments of 1,460 bytes.
 					</p>
 				</div>
 				<div class="about-grid">
-					<div class="about-img reveal">&#128187;</div>
+					<div class="about-img reveal">&#9889;</div>
 					<div class="about-text reveal">
 						<p>
-							I'm a full-stack developer based in San Francisco with 5+ years of
-							experience building modern web applications. I specialize in
-							React, Node.js, and cloud-native architectures.
+							Most websites blast megabytes across dozens of round trips. This
+							page proves a single TCP window can deliver a complete, polished
+							experience.
 						</p>
 						<p>
-							When I'm not coding, you'll find me contributing to open-source or
-							hiking the Bay Area. I believe in writing code that is not just
-							functional, but elegant.
+							No frameworks. No fonts. No images. Just HTML, CSS, and a few
+							lines of vanilla JS — built with Bun and minified into a single
+							file.
 						</p>
 						<div class="about-stats">
 							<div class="stat">
-								<div class="num">50+</div>
-								<div class="label">Projects</div>
+								<div class="num">{{FILESIZE}}</div>
+								<div class="label">Bytes</div>
 							</div>
 							<div class="stat">
-								<div class="num">30+</div>
-								<div class="label">Clients</div>
+								<div class="num">0</div>
+								<div class="label">Round Trips</div>
 							</div>
 							<div class="stat">
-								<div class="num">5+</div>
-								<div class="label">Years Exp</div>
+								<div class="num">1</div>
+								<div class="label">File</div>
 							</div>
 						</div>
 					</div>
@@ -82,84 +85,51 @@
 			</div>
 		</section>
 
-		<section id="skills" style="background: var(--surface)">
+		<section id="anatomy" style="background: var(--surface)">
 			<div class="container">
 				<div class="section-header reveal">
-					<div class="section-label">Expertise</div>
-					<h2>Skills & Technologies</h2>
-					<p>The tools and technologies I use to bring products to life.</p>
+					<div class="section-label">Byte Budget</div>
+					<h2>Where every byte goes</h2>
+					<p>A live breakdown of this page's weight.</p>
 				</div>
 				<div class="skills-grid">
 					<div class="skill reveal">
 						<div class="skill-top">
-							<span class="skill-name">JavaScript / TypeScript</span><span
-								class="skill-pct"
-							>95%</span>
+							<span class="skill-name">CSS</span><span class="skill-pct"
+							>~6.7 KB</span>
 						</div>
 						<div class="skill-bar">
-							<div class="skill-fill" data-w="95"></div>
+							<div class="skill-fill" data-w="51"></div>
 						</div>
 					</div>
 					<div class="skill reveal">
 						<div class="skill-top">
-							<span class="skill-name">React / Next.js</span><span
-								class="skill-pct"
-							>92%</span>
+							<span class="skill-name">HTML</span><span class="skill-pct"
+							>~5.8 KB</span>
 						</div>
 						<div class="skill-bar">
-							<div class="skill-fill" data-w="92"></div>
+							<div class="skill-fill" data-w="44"></div>
 						</div>
 					</div>
 					<div class="skill reveal">
 						<div class="skill-top">
-							<span class="skill-name">Node.js / Express</span><span
-								class="skill-pct"
-							>88%</span>
+							<span class="skill-name">JavaScript</span><span class="skill-pct"
+							>~670 B</span>
 						</div>
 						<div class="skill-bar">
-							<div class="skill-fill" data-w="88"></div>
-						</div>
-					</div>
-					<div class="skill reveal">
-						<div class="skill-top">
-							<span class="skill-name">Python / Django</span><span
-								class="skill-pct"
-							>82%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-w="82"></div>
-						</div>
-					</div>
-					<div class="skill reveal">
-						<div class="skill-top">
-							<span class="skill-name">PostgreSQL / MongoDB</span><span
-								class="skill-pct"
-							>85%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-w="85"></div>
-						</div>
-					</div>
-					<div class="skill reveal">
-						<div class="skill-top">
-							<span class="skill-name">AWS / Docker / CI-CD</span><span
-								class="skill-pct"
-							>80%</span>
-						</div>
-						<div class="skill-bar">
-							<div class="skill-fill" data-w="80"></div>
+							<div class="skill-fill" data-w="5"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section id="projects">
+		<section id="techniques">
 			<div class="container">
 				<div class="section-header reveal">
-					<div class="section-label">Portfolio</div>
-					<h2>Featured Projects</h2>
-					<p>A selection of recent work I'm proud of.</p>
+					<div class="section-label">How</div>
+					<h2>Techniques</h2>
+					<p>What makes it possible.</p>
 				</div>
 				<div class="projects-grid">
 					<div class="project-card reveal">
@@ -170,14 +140,14 @@
 							&#9889;
 						</div>
 						<div class="project-body">
-							<h3>Voltstream Analytics</h3>
+							<h3>Zero Dependencies</h3>
 							<p>
-								Real-time analytics dashboard with interactive charts, live data
-								streaming, and customizable widgets for SaaS metrics.
+								System font stack, CSS custom properties, vanilla JS. No
+								framework, no library, no polyfill.
 							</p>
 							<div class="project-tags">
-								<span class="tag">React</span><span class="tag"
-								>D3.js</span><span class="tag">WebSocket</span>
+								<span class="tag">System Fonts</span><span class="tag"
+								>CSS Variables</span><span class="tag">Vanilla JS</span>
 							</div>
 						</div>
 					</div>
@@ -186,17 +156,17 @@
 							class="project-thumb"
 							style="background: linear-gradient(135deg, #0f2027, #203a43)"
 						>
-							&#127757;
+							&#128295;
 						</div>
 						<div class="project-body">
-							<h3>EcoTrack Platform</h3>
+							<h3>Single-File Build</h3>
 							<p>
-								Environmental monitoring platform that aggregates sensor data
-								and visualizes carbon footprint metrics for enterprises.
+								Bun bundles HTML, CSS, and JS into one file. Inlined and
+								minified. No external requests.
 							</p>
 							<div class="project-tags">
-								<span class="tag">Next.js</span><span class="tag"
-								>Python</span><span class="tag">PostgreSQL</span>
+								<span class="tag">Bun</span><span class="tag"
+								>Inline CSS</span><span class="tag">Minification</span>
 							</div>
 						</div>
 					</div>
@@ -205,17 +175,17 @@
 							class="project-thumb"
 							style="background: linear-gradient(135deg, #1a0a2e, #2d1b4e)"
 						>
-							&#128272;
+							&#127919;
 						</div>
 						<div class="project-body">
-							<h3>VaultKey Auth</h3>
+							<h3>Surgical CSS</h3>
 							<p>
-								Passwordless authentication service with biometric support, SSO
-								integration, and enterprise-grade security features.
+								Every declaration earns its bytes. Scroll reveals via
+								IntersectionObserver, not a library.
 							</p>
 							<div class="project-tags">
-								<span class="tag">Node.js</span><span class="tag"
-								>Redis</span><span class="tag">OAuth 2.0</span>
+								<span class="tag">IntersectionObserver</span><span class="tag"
+								>CSS Transitions</span>
 							</div>
 						</div>
 					</div>
@@ -223,43 +193,38 @@
 			</div>
 		</section>
 
-		<section id="testimonial">
+		<section id="tradeoffs">
 			<div class="container">
 				<div class="testimonial reveal">
 					<blockquote>
-						Alex delivered an exceptional product that exceeded our
-						expectations. The attention to detail in both architecture and user
-						experience was remarkable. Platform performance improved 40% after
-						the rebuild.
+						No custom fonts. No images. No framework. No analytics. No cookie
+						banner. Turns out most of the web's weight is things users never
+						asked for.
 					</blockquote>
-					<cite><strong>Sarah Mitchell</strong> — CTO at Streamline Labs</cite>
+					<cite>
+						<strong>This page</strong>
+						— weighing {{FILESIZE}} bytes
+					</cite>
 				</div>
 			</div>
 		</section>
 
-		<section id="contact" style="background: var(--surface)">
+		<section id="source" style="background: var(--surface)">
 			<div class="container">
 				<div class="section-header reveal">
-					<div class="section-label">Say Hello</div>
-					<h2>Let's Work Together</h2>
-					<p>Have a project in mind? I'd love to hear about it.</p>
+					<div class="section-label">Explore</div>
+					<h2>See for yourself</h2>
+					<p>View source, fork it, beat it.</p>
 				</div>
 				<div class="contact-box reveal">
 					<p style="color: var(--muted); margin-bottom: 20px">
-						I'm currently available for freelance work and full-time positions.
-						Whether you have a question or just want to say hi, my inbox is
-						always open.
+						Open DevTools, check the Network tab. One request, one response,
+						everything you see.
 					</p>
 					<a
-						href="mailto:alex@example.dev"
+						href="https://github.com/kjanat/14kb-demo"
 						class="btn btn-primary"
-						style="margin-bottom: 20px"
-					>Send Me an Email</a>
-					<div class="contact-links">
-						<a href="#" class="contact-link">GitHub</a>
-						<a href="#" class="contact-link">LinkedIn</a>
-						<a href="#" class="contact-link">Twitter</a>
-					</div>
+					>View on GitHub</a>
 				</div>
 			</div>
 		</section>
@@ -267,8 +232,7 @@
 		<footer>
 			<div class="container">
 				<p>
-					&copy; 2026 Alex Chen. Crafted with care & code. <span>{{FILESIZE}}
-						bytes</span> — fits in one TCP initial congestion window.
+					<span>{{FILESIZE}} bytes</span> — one congestion window — zero excuses
 				</p>
 			</div>
 		</footer>

@@ -361,10 +361,7 @@ section {
 	border: 1px solid rgba(108, 92, 231, 0.2);
 }
 
-/* Contact */
-.contact {
-	text-align: center;
-}
+/* Source CTA */
 .contact-box {
 	max-width: 540px;
 	margin: 0 auto;
@@ -372,29 +369,6 @@ section {
 	background: var(--card);
 	border-radius: 16px;
 	border: 1px solid var(--border);
-}
-.contact-links {
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-	margin-top: 24px;
-}
-.contact-link {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	padding: 10px 20px;
-	border-radius: 8px;
-	background: var(--surface);
-	border: 1px solid var(--border);
-	color: var(--text);
-	font-size: 0.9rem;
-	transition: border-color 0.3s, transform 0.25s;
-}
-.contact-link:hover {
-	border-color: var(--accent);
-	transform: translateY(-2px);
-	color: #fff;
 }
 
 /* Footer */

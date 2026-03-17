@@ -54,7 +54,7 @@ if (html.includes(PLACEHOLDER)) {
 	for (let i = 0; i < MAX_ITER; i++) {
 		const size = new Blob([html]).size;
 		const formatted = size.toLocaleString();
-		const next = html.replace(PLACEHOLDER, formatted);
+		const next = html.replaceAll(PLACEHOLDER, formatted);
 		const nextSize = new Blob([next]).size;
 		const nextFormatted = nextSize.toLocaleString();
 		if (formatted === nextFormatted) {
@@ -62,7 +62,7 @@ if (html.includes(PLACEHOLDER)) {
 			break;
 		}
 		// Size changed after injection — retry with new size
-		html = minifyHtml(await output.text()).replace(PLACEHOLDER, nextFormatted);
+		html = minifyHtml(await output.text()).replaceAll(PLACEHOLDER, nextFormatted);
 	}
 }
 
@@ -73,9 +73,19 @@ const content = new TextEncoder().encode(html);
 const gzip = Bun.gzipSync(content).length;
 const initcwnd = 14_600;
 
+const pct = (n: number) => ((n / size) * 100).toFixed(1);
+const cssMatch = html.match(/<style[^>]*>[\s\S]*?<\/style>/);
+const jsMatch = html.match(/<script[^>]*>[\s\S]*?<\/script>/);
+const cssBytes = cssMatch ? new Blob([cssMatch[0]]).size : 0;
+const jsBytes = jsMatch ? new Blob([jsMatch[0]]).size : 0;
+const htmlBytes = size - cssBytes - jsBytes;
+
 console.log(`dist/index.html`);
 console.log(`  raw:  ${size.toLocaleString()} B (${((size / initcwnd) * 100).toFixed(0)}% of initcwnd)`);
 console.log(`  gzip: ${gzip.toLocaleString()} B (${((gzip / initcwnd) * 100).toFixed(0)}% of initcwnd)`);
+console.log(`  css:  ${cssBytes.toLocaleString()} B (${pct(cssBytes)}%)`);
+console.log(`  html: ${htmlBytes.toLocaleString()} B (${pct(htmlBytes)}%)`);
+console.log(`  js:   ${jsBytes.toLocaleString()} B (${pct(jsBytes)}%)`);
 if (size >= initcwnd) {
 	console.error(`  EXCEEDS initcwnd by ${size - initcwnd} B — needs compression`);
 	process.exit(size - initcwnd);
