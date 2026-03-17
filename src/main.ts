@@ -31,6 +31,6 @@ document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
 		e.preventDefault();
 		const href = a.getAttribute('href');
 		const target = href ? document.querySelector(href) : null;
-		if (target) target.scrollIntoView({ behavior: 'smooth' });
+		if (target) target.scrollIntoView();
 	});
 });

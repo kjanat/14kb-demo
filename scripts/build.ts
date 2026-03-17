@@ -40,6 +40,10 @@ function minifyHtml(src: string): string {
 		.replace(/\n\s*/g, ' ')
 		.replace(/>\s+</g, '><')
 		.replace(/\s{2,}/g, ' ')
+		.replace(/\s+>/g, '>')
+		.replace(/="([a-zA-Z0-9._-]+)"/g, '=$1')
+		.replace(/<\/li>/gi, '')
+		.replace(/<\/body>\s*<\/html>\s*$/i, '')
 		.trim();
 	return minified.replace(/\x00(\d+)\x00/g, (_, i) => preserved[Number(i)]!);
 }
@@ -63,7 +67,9 @@ function fmtSize(bytes: number): string {
 // Resolve all {{…}} placeholders via fixed-point iteration — sizes
 // are self-referential so we loop until the output stabilizes.
 // Always inject into the clean template and compare results.
-const template = minifyHtml(await output.text());
+// Fix Bun minifier quirk: extra space in `align-items: center`
+const raw = (await output.text()).replace(/align-items: center/g, 'align-items:center');
+const template = minifyHtml(raw);
 let html = template;
 const MAX_ITER = 10;
 
