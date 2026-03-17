@@ -463,7 +463,8 @@ footer span {
 	}
 }
 @keyframes pulse {
-	0%, 100% {
+	0%,
+	100% {
 		opacity: 0.4;
 	}
 	50% {
@@ -482,7 +483,8 @@ footer span {
 
 /* Responsive */
 @media (max-width: 768px) {
-	.about-grid, .skills-grid {
+	.about-grid,
+	.skills-grid {
 		grid-template-columns: 1fr;
 	}
 	.projects-grid {
